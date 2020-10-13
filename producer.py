@@ -5,7 +5,7 @@ import time
 
 print('Conectando ao MQTT Broker...')
 mqtt_client = mqtt.Client()
-mqtt_client.connect('localhost',1883)
+mqtt_client.connect('18.222.237.157',1883)
 
 qtdade = 0
 

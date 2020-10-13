@@ -14,10 +14,10 @@ services:
    # build:
     #  context: .
      # dockerfile: Dockerfile
-  #consumer:
-   # build:
-    #  context: .
-     # dockerfile: Dockerfile.consumer
+  consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consumer
 
 
 
