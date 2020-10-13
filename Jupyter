@@ -1,0 +1,37 @@
+import pandas as pd
+import requests
+import datetime
+
+!pip3 install pymongo
+
+from pymongo import MongoClient
+
+mongo_client = MongoClient('localhost',27018)  #Conectando ao Mongo
+
+mongo_client
+
+mongo_db = mongo_client['in242'] #Selecionando o banco que iremos trabalhar
+
+mongo_db
+
+mongo_collection = mongo_db['qtdade'] #Selecionando a coleção
+
+mongo_collection
+
+df = pd.DataFrame(list(mongo_collection.find())) #Importando os dados do mongoDb para o df do pandas
+
+df
+
+df['data_coleta'] = df['data_coleta'].dt.strftime('%m/%d/%Y') #Transformando a data para apenas dia
+
+df
+
+df_result = df[['data_coleta','Local','Quantidade']] #Seleção de colunas para organizar
+
+df_result
+
+df_media = df_result.groupby('data_coleta')['Quantidade'].mean() #Realizando a média por data
+
+df_media.head()
+
+df_media.plot() #Plotando gráfico

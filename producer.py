@@ -7,16 +7,31 @@ print('Conectando ao MQTT Broker...')
 mqtt_client = mqtt.Client()
 mqtt_client.connect('localhost',1883)
 
-#while True:
+qtdade = 0
 
-temperatura = random.uniform(34,40)
-print(temperatura)
+while True:
 
-mensagem = {
-    'cliente': 'Inatel',
-    'temperatura': temperatura
-}
+    sensor = random.randint(0,1)
+    print(sensor)
 
-mqtt_client.publish('in242',json.dumps(mensagem))
+    if sensor == 1:
+        qtdade = qtdade + 1
 
-    #time.sleep(5)
+        mensagem = {
+            'Local': 'Porta-A',
+            'Contagem': 'de pessoas',
+            'Quantidade': qtdade
+        }
+
+        mqtt_client.publish('in242',json.dumps(mensagem))
+
+    elif qtdade ==0:
+        mensagem = {
+            'Local': 'Roleta-A',
+            'Contagem': 'de pessoas',
+            'Quantidade': qtdade
+        }
+
+        mqtt_client.publish('in242', json.dumps(mensagem))
+
+    #time.sleep(30)
